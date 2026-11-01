@@ -1,0 +1,21 @@
+name: FE-03 Branch Verification
+on:
+  push:
+    branches:
+      - fe03-vague-2026
+      - fe03-structured-2026
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend-ai-engineering
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
