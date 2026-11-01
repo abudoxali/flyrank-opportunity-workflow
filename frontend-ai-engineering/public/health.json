@@ -1,0 +1,1 @@
+{"service":"studyflow-preview","status":"ok","source":"public/health.json","checks":{"ui":"static-build","environment":"preview"},"version":"0.1.0"}
