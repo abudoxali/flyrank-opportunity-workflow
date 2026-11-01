@@ -1,0 +1,28 @@
+name: Frontend AI Engineering CI
+on:
+  push:
+    branches:
+      - frontend-ai-engineering-2026
+    paths:
+      - 'frontend-ai-engineering/**'
+      - '.github/workflows/frontend-ai-engineering-ci.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend-ai-engineering
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: TypeScript typecheck
+        run: npm run typecheck
+      - name: Component tests
+        run: npm test
+      - name: Production build
+        run: npm run build
